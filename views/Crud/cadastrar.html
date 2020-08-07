@@ -1,0 +1,55 @@
+% rebase("layout.html",title="Crie usuarios")
+
+<form id="Adduser" action="/user-register/save" method="post">
+    <div class="col-12 col-sm-10 col-md-6 col-lg-4 m-auto">
+        <div class="card mt-5 text-center">
+            <div class="card-header">
+                <h5 class="card-title">Cadastro de usuarios</h5>
+            </div>
+          <div class="card-body">
+              <div class="alert alert-danger p-1" id="alertId">
+
+              </div>
+              <div class="row">
+                <div class="col-12 pt-2">
+                    <label for="">First name</label>
+                  <input required type="text" name="firstname" class="form-control" >
+                </div>
+                <div class="col-12 pt-2">
+                    <label for="">last name</label>
+                    <input required type="text" name="lastname" class="form-control" >
+                </div>
+                <div class="col-12 pt-2">
+                    <label for="">Enter password</label>
+                  <input required type="password" name="password" class="form-control">
+                </div>
+                  <div class="col-12 pt-2">
+                    <label for="">Confirm password</label>
+                  <input required type="password" name="confirmpassword" class="form-control">
+                </div>
+                 <div class="col-12 pt-2 text-left">
+                     <button class="btn btn-primary btn-lg btn-block">Enter</button>
+                 </div>
+             </div>
+          </div>
+        </div>
+    </div>
+</form>
+<script>
+    var alert = document.getElementById("alertId")
+    alert.setAttribute('hidden',true)
+    document.getElementById("Adduser").addEventListener("submit", function(event){
+        event.preventDefault()
+         let pass = document.querySelector('input[name="password"]').value
+         let confirm = document.querySelector('input[name="confirmpassword"]').value
+         if(pass == confirm)
+            this.submit()
+         else{
+            alert.removeAttribute("hidden", false)
+            alert.innerHTML = '<p class="m-0 p-0"> confirme a senha</p>'
+            setTimeout(()=>{
+                 alert.setAttribute('hidden', true)
+            },2000)
+         }
+    })
+</script>
